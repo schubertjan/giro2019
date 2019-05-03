@@ -1,0 +1,11 @@
+"0","  y <- c(0, climbs$p.med[i])
+  x <- c(0, climbs$`disl.(m)`[i])
+  x_pol <- seq(x[1],x[2],length.out = 10000)
+  y_pol <- seq(y[1],y[2], length.out = 10000)
+  #select colour
+  col_h <- ""black""
+  if(climbs$cat[i] == 2) {col_h <- ""red""} 
+  else if(climbs$cat[i] == 3) {col_h <- ""orange""}
+"
+"2","Error: unexpected 'else' in ""  else""
+"

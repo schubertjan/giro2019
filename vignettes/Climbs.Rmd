@@ -1,0 +1,106 @@
+---
+title: "Climbs"
+author: ""
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The data is taken from [2019 Giro road book](http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf).
+
+
+## Overview of all classified climbs
+The plot below shows all classified climbs in 2019 Giro in chronological order. The x axis shows the length of a climb (km), the y axis elevation difference (m). The colour represents climb's category.
+
+* Black = cat 1
+* Red = cat 2
+* Orange = cat 3
+* Green = cat 4
+
+```{r, fig.height=15,fig.width=7}
+library(giro2019)
+climbs <- climbs[!is.na(climbs$`disl.(m)`), ]
+
+par(mfrow = c(10,4), mar = c(2,2,2,2))
+x <- lapply(1:nrow(climbs), function(i) {
+  #create data
+  y <- c(0, climbs$p.med[i])
+  x <- c(0, climbs$`disl.(m)`[i])
+  x_pol <- seq(x[1],x[2],length.out = 10000)
+  y_pol <- seq(y[1],y[2], length.out = 10000)
+  #select colour
+  col_h <- "black"
+  if(climbs$cat[i] == 2) {col_h <- "red"} else
+    if(climbs$cat[i] == 3) {col_h <- "orange"} else
+      if(climbs$cat[i] == 4) {col_h <- "green"}
+  
+  #plot
+  plot(x_pol,y_pol,
+       type = "h",
+       col = col_h,
+       xlab = "Distance (km)", 
+       ylab = "Elevantion Diff.(m)",
+       xlim = c(0,max(climbs$`disl.(m)`) * 1.05),
+       ylim = c(0,max(climbs$p.med) * 1.05),
+       main = paste0("Stage", climbs$tappa[i],"\n",climbs$gpm[i]),
+       cex.main = .8)
+})
+```
+
+
+## Overview of all classified climbs by stages
+```{r, fig.height=15,fig.width=7}
+climbs_l <- split(climbs,climbs$tappa)
+n <- lapply(climbs_l,function(x) nrow(x) + 1)
+
+for(i in 1:length(climbs_l)){
+  if(n[i] != 6){
+    for(j in n[[i]]:5){
+      climbs_l[[i]][j, ] <- NA
+      }
+  }
+}
+climbs_full <- do.call(rbind, climbs_l)
+
+par(mfrow = c(19,5), mar = c(2,2,2,2))
+x <- lapply(1:nrow(climbs_full), function(i) {
+  #create data
+  y <- c(0, climbs_full$p.med[i])
+  x <- c(0, climbs_full$`disl.(m)`[i])
+  #if no data plot empty else plot climb
+  if(is.na(x[2])) {
+      plot(0,0,type = "n", axes = FALSE,ann = FALSE)
+  } else {
+  x_pol <- seq(x[1],x[2],length.out = 10000)
+  y_pol <- seq(y[1],y[2], length.out = 10000)
+  #select colour
+  col_h <- "black"
+  if(climbs_full$cat[i] == 2) {col_h <- "red"} else
+    if(climbs_full$cat[i] == 3) {col_h <- "orange"} else
+      if(climbs_full$cat[i] == 4) {col_h <- "green"}
+  #plot
+  plot(x_pol,y_pol,
+       type = "h",
+       col = col_h,
+       xlab = "Distance (km)", 
+       ylab = "Elevantion Diff.(m)",
+       xlim = c(0,max(climbs_full$`disl.(m)`, 
+                      na.rm = TRUE) * 1.05),
+       ylim = c(0,max(climbs_full$p.med, 
+                      na.rm = TRUE) * 1.05),
+       main = paste0("Stage", climbs_full$tappa[i],"\n",climbs_full$gpm[i]),
+       cex.axis = .8,
+       cex.main = .85)
+  }
+})
+```

@@ -113,4 +113,31 @@ Total 53 (delta 1), reused 0 (delta 0)[0K
 [0K[?25h[?25l
 [0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
 $[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add -[0K[?25hA[0K[?25l
-[0K[?25h
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/prop/1DF7F636.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/s-D3E0D2F5/9E2469F6.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/paths.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25hr[0Ke[0Km[0Ko[0Kv[0Ke[0K[25G[?25l$ git commit -m "remove h[0K[?25he[0Kl[0Kl[0Ko[0K.[0KR[0K"[0K[?25l
+[0K[?25h[master 26bcedb] remove hello.R[0K[?25l
+ 6 files changed, 111 insertions(+), 44 deletions(-)[0K
+ delete mode 100644 .Rproj.user/D40BC4BA/sources/s-D3E0D2F5/640D1C2[0K
+ delete mode 100644 R/hello.R[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git p[0K[?25hu[0Ks[0Kh[0K[12G[?25l$ git push o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[19G[?25l$ git push origin m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[?25l
+[0K[?25hEnumerating objects: 27, done.[0K[?25l
+Counting objects: 100% (27/27), done.[0K
+Delta compression using up to 4 threads[0K
+Compressing objects: 100% (13/13), done.[0K
+Writing objects: 100% (14/14), 2.55 KiB | 871.00 KiB/s, done.[0K
+Total 14 (delta 6), reused 0 (delta 0)[0K
+[0K[?25hremote: Resolving deltas: 100% (6/6), completed with 6 local objects.[0K[?25l
+[0K[?25hTo https://github.com/schubertjan/giro2019.git[0K[?25l
+   9559840..26bcedb  master -> master[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git push origin master[0K[?25h[?25l$ git commit -m "remove hello.R"[0K[?25h[?25l$ git add -A[0K[?25h

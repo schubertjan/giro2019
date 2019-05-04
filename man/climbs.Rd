@@ -18,8 +18,8 @@
   \item{dist.(km)}{start climb distance from start, number}
   \item{lungh.(km)}{length of a climb, number}
   \item{disl.(m)}{elevation difference, number}
-  \item{p.med}{average slope, number}
-  \item{p.max}{max slope, number}
+  \item{p.med}{average gradient, number}
+  \item{p.max}{max gradient, number}
 }}
 \source{
 \url{http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf}

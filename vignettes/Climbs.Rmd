@@ -11,57 +11,65 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  fig.width=7,
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
-The data is taken from [2019 Giro road book](http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf).
+The data comes from [2019 Giro road book](http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf) and has been downloaded using the tabulizer package ```tabulizer::extract_tables("http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf", pages = c(17, 18))```.
 
 
-## Overview of all classified climbs
-The plot below shows all classified climbs in 2019 Giro in chronological order. The x axis shows the length of a climb (km), the y axis elevation difference (m). The colour represents climb's category.
+The following report is an analysis of Giro 2019 categorized climbs. It contains:
+
+1. a detailed overview of each climb, 
+2. an overview of climbs by stages, 
+3. total elevation gained by stages and 
+4. an overview sorted by elevation gained.
+
+
+You can download the whole package including the data and all the analyses with ```devtools::install_github("schubertjan/giro2019")```.
+
+
+## 1. Overview of each classified climbs
+Below is a detailed overview of all classified climbs in chronological order. The x axis shows the length of a climb (km), the y axis elevation difference (m). All charts use the same axis to allow relative comparison. The colour represents climb's category.
 
 * Black = cat 1
 * Red = cat 2
 * Orange = cat 3
 * Green = cat 4
 
-```{r, fig.height=15,fig.width=7}
+```{r}
 library(giro2019)
+library(DT)
 
-par(mfrow = c(10,4), mar = c(2,2,2,2))
+DT::datatable(climbs[, c(1,4,5,11,12,13)], rownames = FALSE)
+
 x <- lapply(1:nrow(climbs), function(i) {
-  #create data
-  x <- c(0, climbs$`lungh.(km)`[i])
-  y <- c(0, climbs$`disl.(m)`[i])
-  x_pol <- seq(x[1],x[2],length.out = 10000)
-  y_pol <- seq(y[1],y[2], length.out = 10000)
-  #select colour
-  col_h <- "black"
-  if(climbs$cat[i] == "2") {col_h <- "red"} else
-    if(climbs$cat[i] == "3") {col_h <- "orange"} else
-      if(climbs$cat[i] == "4") {col_h <- "green"}
-  
-  #plot
-  plot(x_pol,y_pol,
-       type = "h",
-       col = col_h,
-       xlab = "Distance (km)", 
-       ylab = "Elevantion Diff.(m)",
-       xlim = c(0,max(climbs$`lungh.(km)`) * 1.05),
-       ylim = c(0,max(climbs$`disl.(m)`) * 1.05),
-       main = paste0("Stage", climbs$tappa[i],"\n",climbs$gpm[i]),
-       cex.main = .8)
+  dat <- giro2019::createhilldata(x = climbs$`lungh.(km)`[i],
+                                  y = climbs$`disl.(m)`[i],
+                                  cat = climbs$cat[i])
+  giro2019::hillplot(x = dat$x,
+                     y = dat$y,
+                     col_plot = dat$plot_col,
+                     x_lim = max(climbs$`lungh.(km)`),
+                     y_lim = max(climbs$`disl.(m)`),
+                     stage = climbs$tappa[i],
+                     climb_name = climbs$gpm[i],
+                     avg_p = climbs$p.med[i],
+                     max_p = climbs$p.max[i])
 })
 ```
 
 
-## Overview of all classified climbs by stages
-```{r, fig.height=15,fig.width=7}
+## 2. Overview of all classified climbs by stages
+The chart below shows an overview of climbs by stages. Most of climbing action is packed between 1 and 2 rest day. Stage 20 is packed with climbing.
+
+```{r, fig.height=15}
+#pre-process data
 climbs_l <- split(climbs,climbs$tappa)
 n <- lapply(climbs_l,function(x) nrow(x) + 1)
-
+#creare NA for stages with  < 5 climbs 
 for(i in 1:length(climbs_l)){
   if(n[i] != 6){
     for(j in n[[i]]:5){
@@ -71,7 +79,8 @@ for(i in 1:length(climbs_l)){
 }
 climbs_full <- do.call(rbind, climbs_l)
 
-par(mfrow = c(19,5), mar = c(2,2,2,2))
+
+par(mfrow = c(19,5), mar = c(1,1,2,1))
 x <- lapply(1:nrow(climbs_full), function(i) {
   #create data
   x <- c(0, climbs_full$`lungh.(km)`[i])
@@ -80,24 +89,63 @@ x <- lapply(1:nrow(climbs_full), function(i) {
   if(is.na(x[2])) {
       plot(0,0,type = "n", axes = FALSE,ann = FALSE)
   } else {
-  x_pol <- seq(x[1],x[2],length.out = 10000)
-  y_pol <- seq(y[1],y[2], length.out = 10000)
-  #select colour
-  col_h <- "black"
-  if(climbs_full$cat[i] == "2") {col_h <- "red"} else
-    if(climbs_full$cat[i] == "3") {col_h <- "orange"} else
-      if(climbs_full$cat[i] == "4") {col_h <- "green"}
-  #plot
-  plot(x_pol,y_pol,
-       type = "h",
-       col = col_h,
-       xlab = "Distance (km)", 
-       ylab = "Elevantion Diff.(m)",
-       xlim = c(0,max(climbs_full$`lungh.(km)`, na.rm = TRUE) * 1.05),
-       ylim = c(0,max(climbs_full$`disl.(m)`, na.rm = TRUE) * 1.05),
-       main = paste0("Stage", climbs_full$tappa[i],"\n",climbs_full$gpm[i]),
-       cex.main = .85,
-       cex.axis = .8)
+  dat <- giro2019::createhilldata(x = climbs_full$`lungh.(km)`[i],
+                                  y = climbs_full$`disl.(m)`[i],
+                                  cat = climbs_full$cat[i])
+  giro2019::hillplot(x = dat$x,
+                     y = dat$y,
+                     col_plot = dat$plot_col,
+                     x_lim = max(climbs_full$`lungh.(km)`, na.rm = TRUE),
+                     y_lim = max(climbs_full$`disl.(m)`, na.rm = TRUE),
+                     stage = climbs_full$tappa[i],
+                     climb_name = climbs_full$gpm[i],
+                     showaxis = FALSE)
   }
+})
+```
+
+
+## 3. Elevation gained from categorized climbs by stages
+This chart shows total elevation gained in categorized climbs. Vertical lines show rest days. Stage 20 is brutal; more than 4600m of categorized climbing!
+
+```{r}
+elev_stage <- aggregate(`disl.(m)` ~ tappa,
+                        data = climbs,
+                        FUN = sum)
+barplot(height = elev_stage$`disl.(m)`, 
+        names.arg = elev_stage$tappa, 
+        xlab = "Stage",
+        ylab = "Total Elevation",
+        main = "Total Elevation Gained in Categorized Climbs")
+abline(v = 9.7)
+abline(v = 15.7)
+
+DT::datatable(elev_stage, 
+              rownames = FALSE, 
+              options = list(pageLength = 20))
+```
+
+
+## 4. Overview of all classified climbs sorted by elevation difference
+No surprise here, a few climbs looks pretty steep for cat 4 :)
+
+```{r, fig.height=15}
+climbs <- climbs[order(climbs$`disl.(m)`), ]
+
+par(mfrow = c(13,3), mar = c(2,1,2,1))
+x <- lapply(1:nrow(climbs), function(i) {
+    dat <- giro2019::createhilldata(x = climbs$`lungh.(km)`[i],
+                                    y = climbs$`disl.(m)`[i],
+                                    cat = climbs$cat[i])
+    giro2019::hillplot(x = dat$x,
+                       y = dat$y,
+                       col_plot = dat$plot_col,
+                       x_lim = max(climbs$`lungh.(km)`),
+                       y_lim = max(climbs$`disl.(m)`),
+                       stage = climbs$tappa[i],
+                       climb_name = climbs$gpm[i],
+                       avg_p = climbs$p.med[i],
+                       max_p = climbs$p.max[i],
+                       showaxis = TRUE)
 })
 ```

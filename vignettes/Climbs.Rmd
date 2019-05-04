@@ -28,7 +28,7 @@ The following report is an analysis of Giro 2019 categorized climbs. It contains
 4. an overview sorted by elevation gained.
 
 
-You can download the whole package including the data and all the analyses with ```devtools::install_github("schubertjan/giro2019")```.
+You can download the whole package including the data and all the reports with ```devtools::install_github("schubertjan/giro2019")```.
 
 
 ## 1. Overview of each classified climbs
@@ -116,7 +116,9 @@ barplot(height = elev_stage$`disl.(m)`,
         names.arg = elev_stage$tappa, 
         xlab = "Stage",
         ylab = "Total Elevation",
-        main = "Total Elevation Gained in Categorized Climbs")
+        main = "Total Elevation Gained in Categorized Climbs",
+        cex.axis = .8,
+        cex.names = .8)
 abline(v = 9.7)
 abline(v = 15.7)
 
@@ -127,7 +129,7 @@ DT::datatable(elev_stage,
 
 
 ## 4. Overview of all classified climbs sorted by elevation difference
-No surprise here, a few climbs looks pretty steep for cat 4 :)
+No surprise here, a few climbs look pretty steep for cat 4 :)
 
 ```{r, fig.height=15}
 climbs <- climbs[order(climbs$`disl.(m)`), ]

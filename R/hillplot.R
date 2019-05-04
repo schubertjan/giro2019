@@ -65,10 +65,8 @@ hillplot <- function(x,
          xlim = c(0,x_lim),
          ylim = c(0,y_lim),
          main = plot_main,
-         sub = plot_sub,
          cex.main = .85,
-         cex.axis = .8,
-         cex.sub = .85)
+         cex.axis = .8)
   } else {
     plot(x,y,
          type = "h",
@@ -78,10 +76,8 @@ hillplot <- function(x,
          xlim = c(0,x_lim),
          ylim = c(0,y_lim),
          main = plot_main,
-         sub = plot_sub,
          cex.main = .85,
          cex.axis = .8,
-         cex.sub = .85,
          axes = FALSE)
   }
 }

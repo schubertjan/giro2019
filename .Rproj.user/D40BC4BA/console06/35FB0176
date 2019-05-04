@@ -374,4 +374,31 @@ fatal: the remote end hung up unexpectedly[0K
 Everything up-to-date[0K
 [0K[?25h[?25l
 [0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
-$ git add -A[0K[?25h
+$ git add -A[0K[?25h[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/prop/1DF7F6[0K3[?25l
+6.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25hd[0Kt[0K2[0K[22G[?25l$ git commit -m "dt2 n[0K[?25hr[0Ko[0Kw[0K[27G[?25l$ git commit -m "dt2 nrow 1[0K[?25h0[0K"[0K[?25l
+[0K[?25h[master 50b5f9d] dt2 nrow 10[0K[?25l
+ 4 files changed, 62 insertions(+), 5 deletions(-)[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git commit -m "dt2 nrow 10"[0K[?25h[?25l$ git add -A[0K[?25h[?25l$ git push origin master[0K[?25h[?25l
+[0K[?25hEnumerating objects: 90, done.[0K[?25l
+Counting objects:  51% (46/90)[0K[1G[?25hCounting objects: 100% (90/90), done.[0K[?25l
+Delta compression using up to 4 threads[0K
+Compressing objects: 100% (45/45), done.[0K
+Writing objects:  64% (35/54)[0K[1G[?25hWriting objects: 100% (54/54), 336.36 KiB | 6.12 MiB/s, done.[0K[?25l
+Total 54 (delta 16), reused 0 (delta 0)[0K
+[0K[?25h[?25lremote: Resolving deltas:   0% (0/16)[0K[1G[?25hremote: Resolving deltas: 100% (16/16), completed with 9 local objects.[0K[?25l
+[0K[?25hTo https://github.com/schubertjan/giro2019.git[0K[?25l
+   d09c9da..50b5f9d  master -> master[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+]0;:/c/Users/schubertj/Documents/github/giro2019[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0m[0K[?25h[0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K[?25l
+$[0K[3G[?25h[0m[0K]0;:/c/Users/schubertj/Documents/github/giro2019[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add -[0K[?25hA[0K

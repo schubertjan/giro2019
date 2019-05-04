@@ -12,5 +12,5 @@ Suggests: knitr,
     rmarkdown,
     DT
 VignetteBuilder: knitr
-Depends: R (>= 3.0.0)
+Depends: R (>= 3.4.3)
 RoxygenNote: 6.0.1

@@ -319,4 +319,59 @@ Total 26 (delta 9), reused 0 (delta 0)[0K
 $[0K[3G[?25h[0m[0K]0;:/c/Users/schubertj/Documents/github/giro2019[?25l
 [0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
 [?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add -[0K[?25hA[0K[?25l
-[0K[?25h
+[0K[?25hwarning: LF will be replaced by CRLF in .Rhistory.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/source-pane.ppe[0Kr[?25l
+.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/windowlayoutsta[0Kt[?25l
+e.pper.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/pcs/workbench-pane.[0Kp
+per.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/persistent-state.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/rmd-outputs.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/prop/1DF7F6[0K3[?25l
+6.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/prop/INDEX.[0K
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/54351083-Cl[0Ki
+mbs/1/s/csetup_chunk/000002.csv.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/paths.[0K[?25l
+The file will have its original line endings in your working directory[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25he[0Kx[0Kt[0Ke[0Kn[0Kd[0K[25G[?25l$ git commit -m "extend v[0K[?25hi[0Kg[0Kn[0Ke[0Kt[0Kt[0Ke[0K[34G[?25l$ git commit -m "extend vignette p[0K[?25hl[0Ku[0Ks[0K[39G[?25l$ git commit -m "extend vignette plus f[0K[?25hu[0Kn[0Kc[0Kt[0Ki[0Ko[0Kn[0Ks[0K[49G[?25l$ git commit -m "extend vignette plus functions f[0K[?25ho[0Kr[0K[53G[?25l$ git commit -m "extend vignette plus functions for c[0K[?25hh[0Ka[0Kr[0Kt[0Ks[0K[60G[59G[?25l$ git commit -m "extend vignette plus functions for charts"[0K[?25h[?25l
+[0K[?25h[master 819999b] extend vignette plus functions for charts[0K[?25l
+ 23 files changed, 751 insertions(+), 401 deletions(-)[0K
+ rewrite .Rproj.user/D40BC4BA/console06/INDEX001 (85%)[0K
+ rewrite .Rproj.user/D40BC4BA/rmd-outputs (98%)[0K
+ rewrite .Rproj.user/shared/notebooks/54351083-Climbs/1/s/chunks.json (81%)[0K
+ create mode 100644 R/createhilldata.R[0K
+ create mode 100644 R/hillplot.R[0K
+ rewrite docs/Climbs.html (78%)[0K
+ create mode 100644 man/createhilldata.Rd[0K
+ create mode 100644 man/hillplot.Rd[0K
+ rewrite vignettes/Climbs.Rmd (67%)[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git p[0K[?25hu[0Ks[0Kh[0K[12G[?25l$ git push o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[19G[?25l$ git push origin m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[?25l
+[0K[?25hEnumerating objects: 77, done.[0K[?25l
+Counting objects:  55% (43/77)[0K[1G[?25hCounting objects: 100% (77/77), done.[0K[?25l
+Delta compression using up to 4 threads[0K
+Compressing objects: 100% (34/34), done.[0K
+Writing objects:  82% (34/41)[0K[1G[?25hWriting objects: 100% (41/41), 334.90 KiB | 7.44 MiB/s, done.[0K[?25l
+Total 41 (delta 9), reused 0 (delta 0)[0K
+[0K[?25hremote: fatal: early EOF[0K[?25l
+error: RPC failed; curl 18 transfer closed with outstanding read data remaining[0K
+fatal: the remote end hung up unexpectedly[0K
+fatal: the remote end hung up unexpectedly[0K
+Everything up-to-date[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$ git add -A[0K[?25h

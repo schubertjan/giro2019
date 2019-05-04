@@ -5,7 +5,7 @@
 \title{Create Hill Plot}
 \usage{
 hillplot(x, y, col_plot, x_lim, y_lim, stage, climb_name, avg_p = NULL,
-  max_p = NULL)
+  max_p = NULL, showaxis = TRUE)
 }
 \arguments{
 \item{x}{a numerical vector used to plot x axis}
@@ -25,6 +25,8 @@ hillplot(x, y, col_plot, x_lim, y_lim, stage, climb_name, avg_p = NULL,
 \item{avg_p}{average gradient}
 
 \item{max_p}{max gradient}
+
+\item{showaxis}{show x and y values}
 }
 \value{
 plot hill

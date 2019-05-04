@@ -122,7 +122,7 @@ abline(v = 15.7)
 
 DT::datatable(elev_stage, 
               rownames = FALSE, 
-              options = list(pageLength = 20))
+              options = list(pageLength = 10))
 ```
 
 

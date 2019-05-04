@@ -140,4 +140,58 @@ Total 14 (delta 6), reused 0 (delta 0)[0K
    9559840..26bcedb  master -> master[0K
 [0K[?25h[?25l
 [0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ git push origin master[0K[?25h[?25l$ git commit -m "remove hello.R"[0K[?25h[?25l$ git add -A[0K[?25h
+$[0K[3G[?25h[?25l$ git push origin master[0K[?25h[?25l$ git commit -m "remove hello.R"[0K[?25h[?25l$ git add -A[0K[?25h[?25l
+[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/prop/1DF7F636.[0K[?25l
+The file will have its original line endings in your working directory[0K
+warning: LF will be replaced by CRLF in .Rproj.user/D40BC4BA/sources/s-D3E0D2F5/9E2469F6.[0K
+The file will have its original line endings in your working directory[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git add -A[0K[?25h[?25l$ git push origin master[0K[?25h[?25l$ git commit -m "remove hello.R"[0K[?25h[?25l
+[0K[?25h[master 9789d4a] remove hello.R[0K[?25l
+ 5 files changed, 31 insertions(+), 16 deletions(-)[0K
+ rewrite .Rproj.user/D40BC4BA/console06/INDEX001 (67%)[0K
+ delete mode 100644 man/hello.Rd[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git commit -m "remove hello.R"[0K[?25h[?25l$ git add -A[0K[?25h[10G[?25l$ git push origin master[0K[?25h[?25l
+[0K[?25hEnumerating objects: 23, done.[0K[?25l
+Counting objects: 100% (23/23), done.[0K
+Delta compression using up to 4 threads[0K
+Compressing objects: 100% (12/12), done.[0K
+Writing objects: 100% (12/12), 1.34 KiB | 688.00 KiB/s, done.[0K
+Total 12 (delta 7), reused 0 (delta 0)[0K
+[0K[?25h[?25lremote: Resolving deltas:  71% (5/7)[0K[1G[?25hremote: Resolving deltas: 100% (7/7), completed with 7 local objects.[0K[?25l
+[0K[?25hTo https://github.com/schubertjan/giro2019.git[0K[?25l
+   26bcedb..9789d4a  master -> master[0K
+[0K[?25h[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+]0;:/c/Users/schubertj/Documents/github/giro2019[?25l
+[0;32mSchubertJ@KTPRGL0361 [0;35m [0;33m~/Documents/github/giro2019[0;36m (master)[0m[0K
+$[0K[3G[?25h[?25l$ git clone https://kantarware.visualstudio.com/KT-InnovationDataScience/_git/dlmdf_enhanced[0K
+[0K[?25hg[0Ki[0Kt[0K[?25lgi[0K[?25h[?25lg[0K[?25h[?25l[0K[?25h[?25l[1A$[0K
+[0K[1A[3G[?25h[?25l$ git clone https://kantarware.visualstudio.com/KT-InnovationDataScience/_git/dlmdf_enhanced[0K
+[0K[?25h[?25l[1A$ cd kantarware[0K
+[0K[1A[16G[?25h[?25l$ git clone https://kantarware.visualstudio.com/KT-InnovationDataScience/_git/dlmdf_enhanced[0K
+[0K[?25h[?25l[1A$ cd kantarware[0K
+[0K[1A[16G[?25h[?25l$ cd kantarwar[0K
+[0K[1A[15G[?25h[?25l$ cd kantarwa[0K
+[0K[1A[14G[?25h[?25l$ cd kantarw[0K
+[0K[1A[13G[?25h[?25l$ cd kantar[0K
+[0K[1A[12G[?25h[?25l$ cd kanta[0K
+[0K[1A[11G[?25h[?25l$ cd kan[0K
+[0K[1A[9G[?25h[?25l$ cd ka[0K
+[0K[1A[8G[?25h[?25l$ cd k[0K
+[0K[1A[7G[?25h[?25l$ cd[0K
+[0K[1A[6G[?25h[5G[?25l$ c[0K
+[0K[1A[4G[?25h[?25l$[0K
+[0K[1A[3G[?25h[?25l$ g[0K
+[0K[1A[4G[?25h[?25l$ gi[0K
+[0K[1A[5G[?25h[?25l$ git[0K
+[0K[1A[6G[?25h[7G[?25l$ git a[0K
+[0K[1A[8G[?25h[?25l$ git ad[0K
+[0K[1A[9G[?25h[?25l$ git add[0K
+[0K[1A[10G[?25h[11G[?25l$ git add -[0K
+[0K[1A[12G[?25h[?25l$ git add -A[0K
+[0K[1A[13G[?25h[?25l
+[?25h

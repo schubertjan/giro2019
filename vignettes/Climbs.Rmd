@@ -29,20 +29,19 @@ The plot below shows all classified climbs in 2019 Giro in chronological order. 
 
 ```{r, fig.height=15,fig.width=7}
 library(giro2019)
-climbs <- climbs[!is.na(climbs$`disl.(m)`), ]
 
 par(mfrow = c(10,4), mar = c(2,2,2,2))
 x <- lapply(1:nrow(climbs), function(i) {
   #create data
-  y <- c(0, climbs$p.med[i])
-  x <- c(0, climbs$`disl.(m)`[i])
+  x <- c(0, climbs$`lungh.(km)`[i])
+  y <- c(0, climbs$`disl.(m)`[i])
   x_pol <- seq(x[1],x[2],length.out = 10000)
   y_pol <- seq(y[1],y[2], length.out = 10000)
   #select colour
   col_h <- "black"
-  if(climbs$cat[i] == 2) {col_h <- "red"} else
-    if(climbs$cat[i] == 3) {col_h <- "orange"} else
-      if(climbs$cat[i] == 4) {col_h <- "green"}
+  if(climbs$cat[i] == "2") {col_h <- "red"} else
+    if(climbs$cat[i] == "3") {col_h <- "orange"} else
+      if(climbs$cat[i] == "4") {col_h <- "green"}
   
   #plot
   plot(x_pol,y_pol,
@@ -50,8 +49,8 @@ x <- lapply(1:nrow(climbs), function(i) {
        col = col_h,
        xlab = "Distance (km)", 
        ylab = "Elevantion Diff.(m)",
-       xlim = c(0,max(climbs$`disl.(m)`) * 1.05),
-       ylim = c(0,max(climbs$p.med) * 1.05),
+       xlim = c(0,max(climbs$`lungh.(km)`) * 1.05),
+       ylim = c(0,max(climbs$`disl.(m)`) * 1.05),
        main = paste0("Stage", climbs$tappa[i],"\n",climbs$gpm[i]),
        cex.main = .8)
 })
@@ -75,8 +74,8 @@ climbs_full <- do.call(rbind, climbs_l)
 par(mfrow = c(19,5), mar = c(2,2,2,2))
 x <- lapply(1:nrow(climbs_full), function(i) {
   #create data
-  y <- c(0, climbs_full$p.med[i])
-  x <- c(0, climbs_full$`disl.(m)`[i])
+  x <- c(0, climbs_full$`lungh.(km)`[i])
+  y <- c(0, climbs_full$`disl.(m)`[i])
   #if no data plot empty else plot climb
   if(is.na(x[2])) {
       plot(0,0,type = "n", axes = FALSE,ann = FALSE)
@@ -85,22 +84,20 @@ x <- lapply(1:nrow(climbs_full), function(i) {
   y_pol <- seq(y[1],y[2], length.out = 10000)
   #select colour
   col_h <- "black"
-  if(climbs_full$cat[i] == 2) {col_h <- "red"} else
-    if(climbs_full$cat[i] == 3) {col_h <- "orange"} else
-      if(climbs_full$cat[i] == 4) {col_h <- "green"}
+  if(climbs_full$cat[i] == "2") {col_h <- "red"} else
+    if(climbs_full$cat[i] == "3") {col_h <- "orange"} else
+      if(climbs_full$cat[i] == "4") {col_h <- "green"}
   #plot
   plot(x_pol,y_pol,
        type = "h",
        col = col_h,
        xlab = "Distance (km)", 
        ylab = "Elevantion Diff.(m)",
-       xlim = c(0,max(climbs_full$`disl.(m)`, 
-                      na.rm = TRUE) * 1.05),
-       ylim = c(0,max(climbs_full$p.med, 
-                      na.rm = TRUE) * 1.05),
-       main = paste0("Stage", climbs_full$tappa[i],"\n",climbs_full$gpm[i]),
-       cex.axis = .8,
-       cex.main = .85)
+       xlim = c(0,max(climbs$`lungh.(km)`) * 1.05),
+       ylim = c(0,max(climbs$`disl.(m)`) * 1.05),
+       main = paste0("Stage", climbs$tappa[i],"\n",climbs$gpm[i]),
+       cex.main = .85,
+       cex.axis = .8)
   }
 })
 ```

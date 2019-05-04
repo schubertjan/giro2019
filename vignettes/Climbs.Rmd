@@ -93,9 +93,9 @@ x <- lapply(1:nrow(climbs_full), function(i) {
        col = col_h,
        xlab = "Distance (km)", 
        ylab = "Elevantion Diff.(m)",
-       xlim = c(0,max(climbs$`lungh.(km)`) * 1.05),
-       ylim = c(0,max(climbs$`disl.(m)`) * 1.05),
-       main = paste0("Stage", climbs$tappa[i],"\n",climbs$gpm[i]),
+       xlim = c(0,max(climbs_full$`lungh.(km)`, na.rm = TRUE) * 1.05),
+       ylim = c(0,max(climbs_full$`disl.(m)`, na.rm = TRUE) * 1.05),
+       main = paste0("Stage", climbs_full$tappa[i],"\n",climbs_full$gpm[i]),
        cex.main = .85,
        cex.axis = .8)
   }

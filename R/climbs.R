@@ -9,11 +9,11 @@
 #'   \item{arrivo}{arrival town, factor}
 #'   \item{gpm}{name of the climb, factor}
 #'   \item{cat}{category climb, factor}
-#'   \item{quota(m)}{highest point, number}
-#'   \item{distgpm}{distance from start, number}
+#'   \item{quota(m)}{altitude at the top of a climb, number}
+#'   \item{distgpm}{distance from finish at the top of a climb, number}
 #'   \item{iniziosalita}{start town of a climb, factor}
 #'   \item{quota(m)}{altitude start of a climb, number}
-#'   \item{dist.(km)}{start climb distance from start, number}
+#'   \item{dist.(km)}{start climb distance from finish, number}
 #'   \item{lungh.(km)}{length of a climb, number}
 #'   \item{disl.(m)}{elevation difference, number}
 #'   \item{p.med}{average gradient, number}

@@ -1,5 +1,5 @@
 ---
-title: "Climbs"
+title: "Climbs 2019"
 author: ""
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

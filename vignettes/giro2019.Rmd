@@ -12,7 +12,7 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   fig.width = 7,
-  fig.height = 4.5,
+  fig.height = 5,
   collapse = TRUE,
   comment = "#>"
 )
@@ -72,6 +72,7 @@ s_2019 <- with(climbs_2019, tapply(`disl.(m)`, tappa, sum))
 s_2018 <- with(climbs_2018, tapply(disl.m, stage, sum))
 s_2017 <- with(climbs_2017, tapply(disl.m, stage, sum))
 
+par(mfrow = c(3,1), mar = c(2,4,2,4))
 plot(names(s_2017), 
      s_2017, 
      type = "b",
@@ -83,19 +84,54 @@ plot(names(s_2017),
      main = "Total Elevation Gained in Categorized Climbs By Stages",
      ylab = "Total Elevation (m)",
      xlab = "Stage",
-     cex.main = .8,
-     cex.axis = .8,
-     cex.lab = .8,
+     cex.axis = .85,
+     cex.lab = .85,
+     cex.main = 1.2,
      xaxt="n",
      pch = 16)
-lines(s_2018, lwd = 3, pch = 16,col = col_2018, type = "b")
-lines(s_2019, lwd = 3, pch = 16, col = col_2019, type = "b")
-axis(1, labels = names(s_2017), at = names(s_2017), cex.axis = .8)
+axis(1, labels = names(s_2017), at = names(s_2017), cex.axis = .85)
 legend("topleft", 
-       legend = c("2017", "2018", "2019"), 
-       col = c(col_2017, col_2018, col_2019),
-       lwd = c(3,3,3),
+       legend = c("2017", "2018", "2019", "Rest days"), 
+       col = c(col_2017, col_2018, col_2019, "black"),
+       lwd = c(3,3,3,1),
+       lty = c(1,1,1,2),
        cex = .8)
+abline(v = 3.5, lty = 2)
+abline(v = 9.5, lty = 2)
+abline(v = 15.5, lty = 2)
+plot(names(s_2017), 
+     s_2018, 
+     type = "b",
+     lwd = 3, 
+     col = col_2018,
+     ylim = c(0, max(c(s_2017,
+                       s_2018,
+                       s_2019))),
+     ylab = "Total Elevation (m)",
+     cex.axis = .85,
+     cex.lab = .85,
+     xaxt="n",
+     pch = 16)
+axis(1, labels = names(s_2017), at = names(s_2017), cex.axis = .85)
+abline(v = 3.5, lty = 2)
+abline(v = 9.5, lty = 2)
+abline(v = 15.5, lty = 2)
+plot(names(s_2017), 
+     s_2019, 
+     type = "b",
+     lwd = 3, 
+     col = col_2019,
+     ylim = c(0, max(c(s_2017,
+                       s_2018,
+                       s_2019))),
+     ylab = "Total Elevation (m)",
+     cex.axis = .85,
+     cex.lab = .85,
+     xaxt="n",
+     pch = 16)
+axis(1, labels = names(s_2017), at = names(s_2017), cex.axis = .85)
+abline(v = 9.5, lty = 2)
+abline(v = 15.5, lty = 2)
 
 #summary by stage
 cs_2017 <- cumsum(s_2017)
@@ -103,7 +139,7 @@ cs_2018 <- cumsum(s_2018)
 cs_2019 <- cumsum(s_2019)
 #replace NA
 
-
+par(mfrow = c(1,1), mar = c(5,4,4,2))
 plot(names(s_2017), 
      cs_2017, 
      type = "b",
@@ -120,6 +156,11 @@ plot(names(s_2017),
      cex.lab = .8,
      xaxt="n",
      pch = 16)
+legend("topleft", 
+       legend = c("2017", "2018", "2019"), 
+       col = c(col_2017, col_2018, col_2019),
+       lwd = c(3,3,3),
+       cex = .8)
 lines(cs_2018, lwd = 3, pch = 16,col = col_2018, type = "b")
 lines(cs_2019, lwd = 3, pch = 16, col = col_2019, type = "b")
 axis(1, labels = names(s_2017), at = names(s_2017), cex.axis = .8)
@@ -127,6 +168,7 @@ legend("topleft",
        legend = c("2017", "2018", "2019"), 
        col = c(col_2017, col_2018, col_2019),
        lwd = c(3,3,3),
+       lty = c(1,1,1),
        cex = .8)
 
 DT::datatable(data.frame(giro2017 = s_2017,

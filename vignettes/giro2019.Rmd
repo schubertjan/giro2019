@@ -23,7 +23,147 @@ library(DT)
 
 In this blog post I will be looking at different stats from Giro roadbook(s). If you enjoy it and would like to play with the data more, you can download the whole package including the data and all the reports with ```devtools::install_github("schubertjan/giro2019")```.
 
+## May 10
+```{r}
+dat <- list(Roglic = tt[tt$rider == "Roglic", ],
+            Dumoulin = tt[tt$rider == "Dumoulin", ],
+            Yates = tt[tt$rider == "Yates S.", ])
 
+#we will remove tour de romandie 2018 ITT as that was uphill and an outlier
+dat$Roglic <- dat$Roglic[- c(5), ]
+
+par(mfrow = c(3,1), mar = c(3,4,2,4))
+x <- lapply(1:length(dat), function(i) {
+  d <- dat[[i]]
+  plot(d$len, d$time,
+       xlab = "",
+       ylab = "",
+       main = paste0("ITT 2018/2019 - ", names(dat)[i]))
+  abline(lm(time ~ len -1, data = d, w = 1/d$len))
+  text(d$len, d$time,labels = d$race, cex = .8)
+  title(ylab="Time (min)", xlab = "Length (km)", line=2)
+})
+
+#we will remove tour de romandie 2018 ITT as that was uphill and an outlier
+m <- list(roglic_m = lm(time ~ len - 1, data = dat$Roglic, w = 1/dat$Roglic$len),
+          dumoulin_m = lm(time ~ len - 1, data = dat$Dumoulin, w = 1/dat$Dumoulin$len),
+          yates_m = lm(time ~ len - 1, data = dat$Yates, w = 1/dat$Yates$len))
+lapply(m, summary)
+
+par(mfrow = c(1,1), mar = c(5,4,5,4))
+plot(c(7,35), c(8,45), 
+     type = "n",
+     xlab = "Length (km)",
+     ylab = "Time (min)",
+     main = "Expected Time in ITT")
+abline(m$roglic_m, col = "gold", lwd = 2)
+abline(m$dumoulin_m, col = "firebrick3", lwd = 2)
+abline(m$yates_m, col = "black", lwd = 2)
+abline(v = c(8,34.8,17), lty = 2)
+text(10,45,labels = "ITT1 - 8km", cex = .8)
+text(32.5,45,labels = "ITT2 - 34.8km", cex = .8)
+text(19.5,45,labels = "ITT3 - 17km", cex = .8)
+legend("bottomright", 
+       legend = c("Roglic", "Dumoulin", "Yates"), 
+       col = c("gold", "firebrick3", "black"),
+       lwd = c(2,2,2),
+       cex = .8)
+
+out <- sapply(m, predict, data.frame(len = c(8,34.8,17)))
+m <- round( floor((out %% 1)*100) * 0.6, 0)
+m <- ifelse(nchar(m) == 1, paste0("0",m),m)
+out_print <- matrix(paste0(floor(out),
+                           ":", 
+                           m),
+                    ncol = 3,
+                    nrow = 3)
+#out_print <- as.data.frame(out_print)
+colnames(out_print) <- c("Roglic", "Dumoulin", "Yates")
+row.names(out_print) <- c("ITT1", "ITT2", "ITT3")
+knitr::kable(out_print)
+
+out_diff <- apply(out, 2, function(x) out[, 3]-x)
+out_diff <- as.data.frame(out_diff[, -3])
+out_diff[4, ] <- colSums(out_diff)
+out_diff <- as.matrix(out_diff)
+m <- round(floor((out_diff %% 1)*100) * 0.6, 0)
+m <- ifelse(nchar(m) == 1, paste0("0",m),m)
+out_d_print <- matrix(paste0(floor(out_diff),
+                           ":", 
+                           m),
+                    ncol = 2,
+                    nrow = 4)
+colnames(out_d_print) <- c("Roglic", "Dumoulin")
+row.names(out_d_print) <- c("ITT1", "ITT2", "ITT3", "Total")
+knitr::kable(out_d_print)
+```
+
+
+## May 7
+Today's data comes from Giro road book and has been downloaded using the tabulizer package: ```tabulizer::extract_tables("http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf", pages = c(17, 18))```
+
+```tabulizer::extract_tables("https://static2.giroditalia.it/wp-content/uploads/2017/04/Garibaldi_2017.pdf", pages = c(10))```
+
+```tabulizer::extract_tables("https://legaciclismo.files.wordpress.com/2018/05/garibaldi-2018.pdf", pages = c(19, 20))```
+
+```{r}
+par(mfcol = c(3,2), mar = c(2,4,2,4))
+hist(climbs_2017$p.media, 
+     breaks = 10,
+     xlim = c(2, 13),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     xlab = "Average Gradient",
+     main = "Distribution of average gradient\n categorized climbs")
+hist(climbs_2018$p.media, 
+     breaks = 10,
+     xlim = c(2, 13),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     main = "")
+hist(climbs$p.med, 
+     breaks = 10,
+     xlim = c(2, 13),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     main = "")
+
+hist(climbs_2017$p.max, 
+     breaks = 10,
+     xlim = c(5, 22),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     xlab = "Max Gradient",
+     main = "Distribution of max gradient\n categorized climbs")
+hist(climbs_2018$p.max, 
+     breaks = 10,
+     xlim = c(5, 22),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     main = "")
+hist(climbs$p.max, 
+     breaks = 10,
+     xlim = c(5, 22),
+     cex.main = 1,
+     cex.lab = .8,
+     cex.axis = .8,
+     main = "")
+
+```
+
+```{r}
+l <- list(giro_2017 = climbs_2018[, c("length.km", "p.media","p.max")],
+          giro_2018 = climbs_2017[, c("length.km", "p.media","p.max")],
+          giro_2019 = climbs[, c("lungh.(km)", "p.med","p.max")]
+          )
+lapply(l, function(x) summary(x)[4, ])
+
+```
 ## May 5
 Today's data comes from Giro road book and has been downloaded using the tabulizer package: ```tabulizer::extract_tables("http://www.giroditalia.it/wp-content/uploads/2019/04/Garibaldi_Giro_italia_2019_low_res.pdf", pages = c(17, 18))```
 

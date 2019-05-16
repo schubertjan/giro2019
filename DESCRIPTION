@@ -10,7 +10,9 @@ Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
     rmarkdown,
-    DT
+    DT,
+    rvest,
+    xml2
 VignetteBuilder: knitr
 Depends: R (>= 3.4.3)
 RoxygenNote: 6.0.1

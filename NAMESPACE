@@ -3,4 +3,5 @@
 export(createhilldata)
 export(hillplot)
 export(sameasabove)
+export(stage.scrape)
 importFrom(graphics,plot)

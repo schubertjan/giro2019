@@ -11,6 +11,8 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
   fig.width = 7,
   fig.height = 5,
   collapse = TRUE,
@@ -22,6 +24,69 @@ library(DT)
 ```
 
 In this blog post I will be looking at different stats from Giro roadbook(s). If you enjoy it and would like to play with the data more, you can download the whole package including the data and all the reports with ```devtools::install_github("schubertjan/giro2019")```.
+
+## May 16
+```{r, fig.width=10}
+#scrape data from wiki
+stages <- stage.scrape()
+
+#calculate cummulative sum after stage 6
+dist.after.6 <- sapply(stages, function(x){
+  x <- x[!is.na(x[, 4]), ]
+  d <- x[, 4]
+  cumsum(d)[6]
+})
+
+#plot
+barplot(height = dist.after.6, 
+        names.arg = names(dist.after.6),
+        main = "Distance (km) Covered After Stage 6",
+        ylab = "Distance (km)",
+        cex.names = .7,
+        cex.axis = .7,
+        las=2)
+abline(h = tail(dist.after.6,1), lty = 2)
+legend("topright", legend = c("Giro 2019 - 1046 (km)"), lty = 2, cex = .5)
+```
+
+
+## May 12
+```{r}
+dat <- list(Roglic = tt[tt$rider == "Roglic", ],
+            Dumoulin = tt[tt$rider == "Dumoulin", ],
+            Yates = tt[tt$rider == "Yates S.", ])
+
+#we will remove tour de romandie 2018 ITT as that was uphill and an outlier
+dat$Roglic <- dat$Roglic[- c(5), ]
+
+par(mfrow = c(3,1), mar = c(3,4,2,4))
+x <- lapply(1:length(dat), function(i) {
+  d <- dat[[i]]
+  plot(d$len, d$time,
+       xlab = "",
+       ylab = "",
+       main = paste0("ITT 2018/2019 - ", names(dat)[i]))
+  abline(lm(time ~ len -1, data = d, w = 1/d$len))
+  text(d$len, d$time,labels = d$race, cex = .8)
+  title(ylab="Time (min)", xlab = "Length (km)", line=2)
+})
+
+#we will remove tour de romandie 2018 ITT as that was uphill and an outlier
+m <- list(roglic_m = lm(time ~ len - 1, data = dat$Roglic, w = 1/dat$Roglic$len),
+          dumoulin_m = lm(time ~ len - 1, data = dat$Dumoulin, w = 1/dat$Dumoulin$len),
+          yates_m = lm(time ~ len - 1, data = dat$Yates, w = 1/dat$Yates$len))
+lapply(m, summary)
+
+pred <- sapply(m, predict, data.frame(len = c(5.9)))
+obs <- c("6:48", "7:06", "6:59")
+s <-  as.numeric(format(strptime(obs, format = "%M:%S"), format = "%S")) * 1/60^2
+m <-  as.numeric(format(strptime(obs, format = "%M:%S"), format = "%M")) * 1/60
+t <- (m+s)*60
+
+(t - pred)*60/100
+t/pred
+```
+
 
 ## May 10
 ```{r}
